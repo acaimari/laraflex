@@ -1,0 +1,15 @@
+/**
+ * Plugin soundPlayer
+ * Copyright (c) <2016> <Jacques Malgrange contacter@boiteasite.fr>
+ * License MIT
+ */
+div.ui360 a{display:block;cursor:pointer;background:transparent url(icons/player360.png) no-repeat scroll 0 0;width:64px;height:64px;font-size:1;text-decoration:none;}
+div.ui360 a:hover{background-image:url(icons/player360_over.png)}
+a.sm2_button{display:block;cursor:pointer;background:transparent url(icons/mp3button.png) no-repeat scroll 0 0;width:18px;height:18px;font-size:1;text-decoration:none;}
+a.sm2_button:hover{background-image:url(icons/mp3button_over.png)}
+a.inline-playable{display:inline-block;min-height:16px;background-image:url(icons/icon_play.png);background-position:3px 50%;background-repeat:no-repeat;vertical-align:middle;background-color:#336699;border-radius:3px;padding:3px 3px 3px 25px;min-width:19em;text-decoration:none;font-weight:normal;color:#f6f9ff;}
+a.inline-playable:hover{background-color:#003366;color:#fff;}
+div.sm2-bar-ui{width:320px;height:42px;background-image:url(icons/fullplayer320.png);position:relative;}
+div.sm2-bar-ui .sm2-main-controls,div.sm2-bar-ui .sm2-inline-texture{display:none;}
+div.sm2-bar-ui .bd div.sm2-playlist-wrapper ul li a{position:absolute;left:50px;top:1px;display:block;width:220px;height:20px;overflow:hidden;text-decoration:none;color:#fff;}
+div.sm2-bar-ui li{list-style:none;}

@@ -1,0 +1,18 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<form action="{{ route("crud.$modelName.store") }}" method="POST">
+
+
+
+        @method('POST')
+        @csrf
+  
+    $formFields
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+$additionalScripts
+@endsection

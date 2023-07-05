@@ -1,0 +1,39 @@
+{
+    "name": "caimari/laraflex",
+    "description": "LaraFlex CMS & CRUD Toolkit",
+    "type": "library",
+    "version": "1.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antoni Caimari Caldes",
+            "email": "laraflex-org@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Caimari\\LaraFlex\\": "src/",
+            "Caimari\\LaraFlex\\Controllers\\": "src/Controllers/"
+        }
+    },
+    "require": {
+        "php": "^7.3",
+        "laravel/framework": "^8.0",
+        "realrashid/sweet-alert": "^7.0",
+        "doctrine/dbal": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Caimari\\LaraFlex\\LaraFlexServiceProvider"
+            ]
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/acaimari/laraflex.git",
+            "branch": "main"
+        }
+    ]
+}

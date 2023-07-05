@@ -1,0 +1,15 @@
+@extends('layouts.admin')
+
+@section('content')
+<h1>Edit $modelName</h1>
+
+<form method="POST" action="{{ route('crud.$modelName.update', $item->id) }}">
+
+
+    @csrf
+    @method('PUT')
+    $formFields
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+
+@endsection

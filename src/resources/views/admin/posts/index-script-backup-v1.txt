@@ -1,0 +1,143 @@
+
+
+
+<script>
+    var currentSortField = '';
+    var currentSortDirection = 'asc';
+
+    function executeSearch() {
+        var searchValue = $('#searchInput').val();
+
+        $.ajax({
+            url: '{{ route('posts.ajaxSearch') }}',
+            type: 'GET',
+            data: {
+                search: searchValue,
+                sortField: currentSortField,
+                sortDirection: currentSortDirection
+            },
+            success: function(response) {
+                // Actualizar la tabla de resultados con los datos devueltos
+                var tableBody = $('#resultsTable tbody');
+                tableBody.empty();
+
+                $.each(response, function(index, post) {
+                    var row = '<tr>' +
+                        '<td>' +
+                        '<a href="' + '{{ route('posts.edit', 'id') }}'.replace('id', post.id) + '">' +
+                        post.title +
+                        '</a>' +
+                        '</td>' +
+                        '<td>';
+                            
+                        
+                        if(post.categories) {
+                        $.each(post.categories, function(index, category) {
+                            row += category.title;
+
+                            if (index < post.categories.length - 1) {
+                                row += ', ';
+                            }
+                        });
+                    }
+
+                    row += '</td>' +
+                        '<td>';
+
+
+                    if(post.tags) {
+                        $.each(post.tags, function(index, tag) {
+                            row += tag.title;
+
+                            if (index < post.tags.length - 1) {
+                                row += ', ';
+                            }
+                        });
+                    }
+
+                        row += '</td>' +
+                            '<td>' + (post.status ? 'Active' : 'Inactive') + '</td>' +
+                            '<td>' +
+                            '<div class="d-flex">' +
+                            '<a href="' + '{{ route('posts.edit', 'id') }}'.replace('id', post.id) + '">' +
+                            '<button>' +
+                            '<i class="mdi mdi-note-edit-outline"></i>' +
+                            '</button>' +
+                            '</a>' +
+                            '<form action="' + '{{ route('posts.destroy', 'id') }}'.replace('id', post.id) + '" method="POST" onsubmit="return confirm(\'Are you sure to delete this post?\')">' +
+                            '<input type="hidden" name="_method" value="POST" />' +
+                            '@csrf' +
+                            '<button type="submit">' +
+                            '<i class="mdi mdi-trash-can-outline"></i>' +
+                            '</button>' +
+                            '</form>' +
+                            '<button onclick="window.open(\'{{ route('post.show', 'slug') }}'.replace('slug', post.slug) + '\', \'_blank\')">' +
+                            '<i class="mdi mdi-eye-arrow-right-outline"></i>' +
+                            '</button>' +
+                            '</div>' +
+                            '</td>' +
+                            '</tr>';
+
+                        tableBody.append(row);
+                    });
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $('#searchForm').on('submit', function(e) {
+            e.preventDefault();
+
+            executeSearch();
+        });
+    });
+</script>
+
+
+<script>
+    // Declare variables in the global scope
+    var currentSortField = '';
+    var currentSortDirection = 'asc';
+
+    $(document).ready(function() {
+        $('#resetButton').click(function() {
+            window.location.href = '{{ route('posts.index') }}';
+        });
+
+        $('.sortable').click(function() {
+            var sortField = $(this).data('sort');
+            var sortDirection = (currentSortField == sortField && currentSortDirection == 'asc') ? 'desc' : 'asc';
+
+            // Update the global variables
+            currentSortField = sortField;
+            currentSortDirection = sortDirection;
+
+            // Execute the search with the new sorting
+            executeSearch();
+        });
+
+        function executeSearch() {
+            var searchValue = $('#searchInput').val();
+
+            // Only execute the search if there is a search term
+            if (searchValue) {
+                $.ajax({
+                    url: '{{ route('posts.ajaxSearch') }}',
+                    type: 'GET',
+                    data: {
+                        search: searchValue,
+                        sortField: currentSortField,
+                        sortDirection: currentSortDirection
+                    },
+                    success: function(response) {
+                        // Update the results table with the returned data
+                        var tableBody = $('#resultsTable tbody');
+                        tableBody.empty();
+
+                        // Similar code to before for populating the table
+                    }
+                });
+            }
+        }
+    });
+</script>

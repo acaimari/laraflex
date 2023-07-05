@@ -1,0 +1,23 @@
+{
+    "name": "caimari/laurelfly",
+    "description": "Tema LaurelFly para Laraflex",
+    "type": "laraflex-theme",
+    "version": "1.0.0",
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "laravel/framework": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Caimari\\LaraFlex\\Themes\\LaurelFly\\": "src/"
+            
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Caimari\\LaraFlex\\Themes\\LaurelFlyServiceProvider"
+            ]
+        }
+    }
+}
